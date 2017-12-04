@@ -1,0 +1,168 @@
+#version 0.2
+#Copyright Guus Ellenkamp
+#Will apply common Copyright agreement soon
+#For now this script may be used and adapted as-is as long as I, Guus Ellenkamp, am considered as the original author and copyright holder of the basic script.
+# $program holds the link to the executable.
+program=~/git/xmrig/build/xmrig
+# $port holds the port you want to mine to.
+port="3333"
+# $user holds the username for the pool. In case of Electroneum it is mostly the public address.
+user="etnk67tbdXAB45wCP7c3ukE4fLNpQyQasYiDZNWenzUWEgfjgJxXdjjizpymwzuLfuNBznFocLD5KB7iwLq1YRmJ4BCvbkdwRm"
+# $password holds the password. In case of ETN it is normally just 'x'.
+password="x"
+if [ -z "$1" ]
+then 
+	echo "No pool name given. Setting to poolca"
+	site="poolca"
+else 
+	site=$1
+fi
+if [ -z "$2" ]
+then 
+	echo "No number of threads given. Setting to 1"
+	threads=1
+else 
+	threads=$2
+fi
+case $site in 
+	aicrypto)
+		par='stratum+tcp://etn-pool.ai-crypto.com:'
+	;;
+	baliwae)
+		par='stratum+tcp://pool.etn.baliwae.com:';
+	;;
+	cryptoclub) 
+		par='stratum+tcp://etn.crypto-coins.club:'
+		port=21020
+	;;
+	cryptome)
+		par='stratum+tcp://etn.cryptonight.me:'
+	;;
+	io)
+		par='stratum+tcp://intense.miningpools.us:'
+	;;
+	monero)
+		par='stratum+tcp://vegas-1.xmrpool.net:'
+		port=3333	
+		key=48Df8sy1Ju6EXuyszTgUQmVtzgkxC4ktpSQGmRZUx8kQ7iWm7bpD6jWS8mn6LCEJtA3UzYfhfbTUS2XUdSKd6VrLC8oEH76
+		user=$key
+		password=worker
+	;;
+	ucrypto)
+		par='stratum+tcp://etn.ucrypto.com:'
+	;;		
+	*)
+		if [ $site = 'cryptobits' ]
+			then par='stratum+tcp://etn.mining.cryptobits.ltd:'
+			port=6333
+		fi
+		if [ $site = 'cryptox' ]
+			then par='stratum+tcp://etn.cryptoxpool.com:'
+		fi
+		if [ $site = 'etnlife' ]
+			then par='stratum+tcp://etn.life:'
+		fi
+		if [ $site = 'myetnuk' ]
+			then par='stratum+tcp://myetn.uk:'
+		fi
+		if [ $site = 'mobile' ]
+			then par='stratum+tcp://electroneum.mobile-mining.com:'
+			port=2052
+		fi
+		if [ $site = 'netforspeed' ]
+			then par='stratum+tcp://electro.netforspeed.com:'
+		#	port=3434
+		fi
+		if [ $site = 'poolnet' ]
+			then par='stratum+tcp://etnpool.net:'
+			port=3333
+		fi
+		if [ $site = 'etnhash' ]
+			then par='stratum+tcp://etnhash.com:'
+		fi
+		if [ $site = 'eu' ]
+			then par='stratum+tcp://eupool.electroneum.com:'
+		fi
+		if [ $site = 'iopool' ]
+		#etnpool.io
+			then par='stratum+tcp://intense.miningpools.us:'
+		fi
+		if [ $site = 'miners' ]
+			then par='stratum+tcp://etnminers.com:'
+		fi
+		if [ $site = 'miningpool' ]
+			then par='stratum+tcp://pool.electroneum-mining-pool.com:'
+		fi
+		if [ $site = 'mobile' ]
+			then par='stratum+tcp://electroneum.mobile-mining.com:'
+		fi
+		if [ $site = 'us' ]
+			then par='stratum+tcp://uspool.electroneum.com:'
+		fi
+		if [ $site = 'asia' ]
+			then par='stratum+tcp://asiapool.electroneum.com:'
+		fi
+		if [ $site = 'hashparty' ]
+			#mines to us site
+			then par='stratum+tcp://us-etnpool.hashparty.io:'
+		fi
+		if [ $site = 'hashpartyasia' ]
+			then par='stratum+tcp://asia-etn-pool.hashparty.io:'
+		fi
+		if [ $site = 'hashpartyuk' ]
+			then par='stratum+tcp://uk-etn-pool.hashparty.io:'
+		fi
+		if [ $site = 'hashpartyus' ]
+			then par='stratum+tcp://us-etn-pool.hashparty.io:'
+		fi
+		if [ $site = 'space' ]
+			then par='stratum+tcp://pool.electroneum.space:'
+		fi
+		if [ $site = 'uax' ]
+			then par='stratum+tcp://etn.uax.io:'
+		fi
+		if [ $site = 'fr' ]
+			then par='stratum+tcp://eu2.electromine.fr:'
+		fi
+		if [ $site = 'charts' ]
+			then par='stratum+tcp://pool.electroneumcharts.com:'
+		fi
+		if [ $site = 'poolca' ]
+			then par='stratum+tcp://miner.etnpool.ca:'
+			port=3343
+		fi
+		if [ $site = 'poolclub' ]
+			then par='stratum+tcp://us.etnpool.club:'
+		fi
+		if [ $site = 'ovh' ]
+			then par='stratum+tcp://electroneum.cryptominingpool.eu:'
+		fi
+		if [ $site = 'supernova' ]
+			then par='stratum+tcp://etn.suprnova.cc:'
+			user="guus.etn"
+			password="password"
+			port=8875
+		fi
+		if [ $site = 'easyhash' ]
+			then 
+				par='stratum+tcp://etn.easyhash.io:'
+				port=3630	
+		fi
+		if [ $site = 'xzpool' ]
+			then 
+				par='stratum+tcp://etn.xzpool.com:'
+		fi
+		if [ $site = 'minekitten' ]
+			then 
+				par='stratum+tcp://etnpool.minekitten.io:'
+		fi
+		if [ -z "$par" ] 
+			then
+			echo 'Wrong parameter given. Setting pool to hashparty.'
+			par='stratum+tcp://electroneum.hashparty.io:'
+		fi
+	;;
+esac
+parameters="-a cryptonight -o $par$port -u $user -p $password -t $threads --donate-level=1"
+echo "$program $parameters"
+$program $parameters
