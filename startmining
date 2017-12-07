@@ -28,6 +28,10 @@ case $site in
 	aicrypto)
 		par='stratum+tcp://etn-pool.ai-crypto.com:'
 	;;
+	austrohash)
+		par='stratum+tcp://etn.austrohash.at:'
+		port=2010
+	;;
 	baliwae)
 		par='stratum+tcp://pool.etn.baliwae.com:';
 	;;
@@ -37,6 +41,13 @@ case $site in
 	;;
 	cryptome)
 		par='stratum+tcp://etn.cryptonight.me:'
+	;;
+	dotpool)
+		par='stratum+tcp://dotpool.org:'
+	;;
+	hashvault)
+		par='stratum+tcp://pool.electroneum.hashvault.pro:'
+		port=3333
 	;;
 	io)
 		par='stratum+tcp://intense.miningpools.us:'
@@ -121,6 +132,9 @@ case $site in
 		if [ $site = 'uax' ]
 			then par='stratum+tcp://etn.uax.io:'
 		fi
+		if [ $site = 'elfr' ]
+			then par='stratum+tcp://eu2.electromine.fr:'
+		fi
 		if [ $site = 'fr' ]
 			then par='stratum+tcp://eu2.electromine.fr:'
 		fi
@@ -158,8 +172,9 @@ case $site in
 		fi
 		if [ -z "$par" ] 
 			then
-			echo 'Wrong parameter given. Setting pool to hashparty.'
-			par='stratum+tcp://electroneum.hashparty.io:'
+			echo 'Wrong parameter given. Setting pool to easyhash.'
+			par='stratum+tcp://etn.easyhash.io:'
+			port=3630
 		fi
 	;;
 esac
