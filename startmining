@@ -25,6 +25,9 @@ else
 	threads=$2
 fi
 case $site in 
+	asia)
+		par='stratum+tcp://asiapool.electroneum.com:'
+	;;
 	aicrypto)
 		par='stratum+tcp://etn-pool.ai-crypto.com:'
 	;;
@@ -45,6 +48,12 @@ case $site in
 	dotpool)
 		par='stratum+tcp://dotpool.org:'
 	;;
+	elasia)
+		par='stratum+tcp://asiapool.electroneum.com:'
+	;;
+	fairhash)
+		par='stratum+tcp://etn.fairhash.org:'
+	;;
 	hashvault)
 		par='stratum+tcp://pool.electroneum.hashvault.pro:'
 		port=3333
@@ -59,6 +68,13 @@ case $site in
 		user=$key
 		password=worker
 	;;
+	nanopool)
+		par='stratum+tcp://etn-asia1.nanopool.org:'
+		port=13333
+	;;		
+	pulsarcrypt)
+		par='stratum+tcp://pulsarcrypt.com:'
+	;;		
 	ucrypto)
 		par='stratum+tcp://etn.ucrypto.com:'
 	;;		
@@ -69,6 +85,9 @@ case $site in
 		fi
 		if [ $site = 'cryptox' ]
 			then par='stratum+tcp://etn.cryptoxpool.com:'
+		fi
+		if [ $site = 'cryptoxie' ]
+			then par='stratum+tcp://etnpool.cryptoxie.com:'
 		fi
 		if [ $site = 'etnlife' ]
 			then par='stratum+tcp://etn.life:'
@@ -109,9 +128,6 @@ case $site in
 		fi
 		if [ $site = 'us' ]
 			then par='stratum+tcp://uspool.electroneum.com:'
-		fi
-		if [ $site = 'asia' ]
-			then par='stratum+tcp://asiapool.electroneum.com:'
 		fi
 		if [ $site = 'hashparty' ]
 			#mines to us site
