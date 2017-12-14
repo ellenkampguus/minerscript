@@ -25,6 +25,10 @@ else
 	threads=$2
 fi
 case $site in 
+	2zo)
+		par='stratum+tcp://etn.2zo.pw:'
+		port=3032
+	;;
 	asia)
 		par='stratum+tcp://asiapool.electroneum.com:'
 	;;
@@ -71,6 +75,9 @@ case $site in
 	nanopool)
 		par='stratum+tcp://etn-asia1.nanopool.org:'
 		port=13333
+	;;		
+	pislv)
+		par='stratum+tcp://electroneum.pis.lv:'
 	;;		
 	pulsarcrypt)
 		par='stratum+tcp://pulsarcrypt.com:'
