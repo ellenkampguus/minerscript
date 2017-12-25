@@ -65,6 +65,13 @@ case $site in
 	io)
 		par='stratum+tcp://intense.miningpools.us:'
 	;;
+	minerfact)
+		par='stratum+tcp://etn.minerfact.com:'
+		port=4100
+	;;
+	mobile)
+		par='stratum+tcp://electroneum.mobile-mining.com:'
+	;;
 	monero)
 		par='stratum+tcp://vegas-1.xmrpool.net:'
 		port=3333	
@@ -101,10 +108,6 @@ case $site in
 		fi
 		if [ $site = 'myetnuk' ]
 			then par='stratum+tcp://myetn.uk:'
-		fi
-		if [ $site = 'mobile' ]
-			then par='stratum+tcp://electroneum.mobile-mining.com:'
-			port=2052
 		fi
 		if [ $site = 'netforspeed' ]
 			then par='stratum+tcp://electro.netforspeed.com:'
