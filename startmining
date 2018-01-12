@@ -12,14 +12,14 @@ user="etnk67tbdXAB45wCP7c3ukE4fLNpQyQasYiDZNWenzUWEgfjgJxXdjjizpymwzuLfuNBznFocL
 password="x"
 if [ -z "$1" ]
 then 
-	echo "No pool name given. Setting to poolca"
+	echo "No pool name given. Setting to poolca."
 	site="poolca"
 else 
 	site=$1
 fi
 if [ -z "$2" ]
 then 
-	echo "No number of threads given. Setting to 1"
+	echo "No number of threads given. Setting to 1."
 	threads=1
 else 
 	threads=$2
@@ -42,6 +42,16 @@ case $site in
 	baliwae)
 		par='stratum+tcp://pool.etn.baliwae.com:';
 	;;
+	bestpool)
+		par='stratum+tcp://etn-pool.bestminepool.com:';
+	;;
+	cylim)
+		par='stratum+tcp://etnpool.cylim.com.my:';
+	;;
+	cryptobits)
+		par='stratum+tcp://etn.mining.cryptobits.ltd:'
+		port=6333
+	;;
 	cryptoclub) 
 		par='stratum+tcp://etn.crypto-coins.club:'
 		port=21020
@@ -52,8 +62,23 @@ case $site in
 	dotpool)
 		par='stratum+tcp://dotpool.org:'
 	;;
+	dedpewl)
+		par='stratum+tcp://etnus.dedpewl.com:'
+	;;
 	elasia)
 		par='stratum+tcp://asiapool.electroneum.com:'
+	;;
+	eleu)
+		par='stratum+tcp://eupool.electroneum.com:'
+	;;
+	etnlife)
+		par='stratum+tcp://etn.life:'
+	;;
+	etnpools)
+		par='stratum+tcp://www.etnpools.com:'
+	;;
+	euxmr)
+		par='stratum+tcp://82.211.23.18:';
 	;;
 	fairhash)
 		par='stratum+tcp://etn.fairhash.org:'
@@ -62,8 +87,14 @@ case $site in
 		par='stratum+tcp://pool.electroneum.hashvault.pro:'
 		port=3333
 	;;
+	herominers)
+		par='stratum+tcp://etn.herominers.club:'
+	;;
 	io)
 		par='stratum+tcp://intense.miningpools.us:'
+	;;
+	life)
+		par='stratum+tcp://etn.life:'
 	;;
 	minerfact)
 		par='stratum+tcp://etn.minerfact.com:'
@@ -83,28 +114,51 @@ case $site in
 		par='stratum+tcp://etn-asia1.nanopool.org:'
 		port=13333
 	;;		
+	nocroom)
+		par='stratum+tcp://etn.pool.nocroom.com:'
+	;;		
 	pislv)
 		par='stratum+tcp://electroneum.pis.lv:'
 	;;		
+	ppua)
+		par='stratum+tcp://electroneum.pp.ua:';
+	;;
+	pw)
+		par='stratum+tcp://electroneumpool.pw:';
+	;;
 	pulsarcrypt)
 		par='stratum+tcp://pulsarcrypt.com:'
 	;;		
+	reidospl)
+		par='stratum+tcp://pool.sp1.etn.reidocoin.com.br:'
+		port=9501
+		difficulty=+500
+	;;			
+	rustylock)
+		par='stratum+tcp://etn.rustylock.club:'
+		port=23333
+	;;		
+	strongpool)
+		par='strongpool.online:';
+	;;
+	sytes)
+		par='etnpool.sytes.net:';
+	;;
+	topmining)
+		par=' top-miningpool.eu:';
+	;;
 	ucrypto)
 		par='stratum+tcp://etn.ucrypto.com:'
 	;;		
+	vip)
+		par='stratum+tcp://mine.electroneum.vip:'
+	;;		
 	*)
-		if [ $site = 'cryptobits' ]
-			then par='stratum+tcp://etn.mining.cryptobits.ltd:'
-			port=6333
-		fi
 		if [ $site = 'cryptox' ]
 			then par='stratum+tcp://etn.cryptoxpool.com:'
 		fi
 		if [ $site = 'cryptoxie' ]
 			then par='stratum+tcp://etnpool.cryptoxie.com:'
-		fi
-		if [ $site = 'etnlife' ]
-			then par='stratum+tcp://etn.life:'
 		fi
 		if [ $site = 'myetnuk' ]
 			then par='stratum+tcp://myetn.uk:'
@@ -204,6 +258,6 @@ case $site in
 		fi
 	;;
 esac
-parameters="-a cryptonight -o $par$port -u $user -p $password -t $threads --donate-level=1"
+parameters="-a cryptonight -o $par$port -u $user$difficulty -p $password -t $threads --donate-level=1"
 echo "$program $parameters"
 $program $parameters
