@@ -65,6 +65,9 @@ case $site in
 	dedpewl)
 		par='stratum+tcp://etnus.dedpewl.com:'
 	;;
+	easyblock)
+		par='stratum+tcp://pool.easyblock.pro:'
+	;;
 	elasia)
 		par='stratum+tcp://asiapool.electroneum.com:'
 	;;
